@@ -3,10 +3,15 @@ import Spinner  from "../spinner/Spinner.js";
 import ErrorMessage from '../error/error';
 
 import './charList.scss';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 
 class CharList extends Component {
+
+    constructor(props) {
+        super(props)
+        // this.focusRef = React.createRef()
+    }
 
     state = {
         charList: [],
@@ -14,13 +19,18 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 1,
-        charEndead: false
+        charEndead: false,
+        // focus: falses
     }
+
+    
+    
 
     MarvelService = new MarvelService()
 
     componentDidMount() {
         this.onRequestNewChar()
+        
     }
     
     onRequestNewChar = (offset) => {
@@ -31,7 +41,6 @@ class CharList extends Component {
     }
 
     onCharLoaded = (newCharList) => {
-        console.log(newCharList)
         let endead = false
         if (newCharList.length < 9) {
             endead = true
@@ -61,19 +70,36 @@ class CharList extends Component {
             })
     }
 
+    activeRed = []
+
+    pushActiveRedItems = (ref) => {
+        this.activeRed.push(ref)
+    }
+
+    onFocusItem = (id) => {
+        this.activeRed.forEach(items => {items.classList.remove('char__item_selected')})
+        this.activeRed[id].classList.add('char__item_selected')
+    }
+
+
+
     renderItems (arr) {
-        let character = arr.map((item) => {
+        let character = arr.map((item, i) => {
             
             let imgStyle = {'objectFit' : 'cover'};
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'unset'};
             }
             let {id, thumbnail, name} = item
-            console.log(id)
             return (
                 <li className="char__item" 
-                key={id}
-                onClick={() => {this.props.onSelectedChar(id)}}
+                key = {id}
+                onClick = {() => {this.props.onSelectedChar(id)}}
+                ref = {this.pushActiveRedItems}
+                onPointerEnter = {(e) => {
+                    // this.props.onCharSelected(item.id)
+                    this.onFocusItem(i)
+                }}
                 >
                     <img src={thumbnail} alt={name} style={imgStyle}/>
                     <div className="char__name">{name}</div>
@@ -94,7 +120,6 @@ class CharList extends Component {
         
         
         const items = this.renderItems(charList);
-        
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error) ? items : null;
@@ -104,7 +129,6 @@ class CharList extends Component {
                     {errorMessage}
                     {spinner}
                     {content}
-                
                 <button 
                     className="button button__main button__long"
                     disabled={newItemLoading}

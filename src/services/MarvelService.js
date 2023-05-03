@@ -11,7 +11,6 @@ class MarvelService {
     getResorces = async (url) => {
         
         let res = await fetch(url)
-        console.log(res)
         if (!res.ok) {
             throw new Error (`Could't fetch ${url}. status ${res.status}`)
         }
@@ -20,22 +19,17 @@ class MarvelService {
 
     getAllCharacters = async (Offset = this._totalChar) => {
         const res = await this.getResorces(`${this._apiBase}characters?limit=9&offset=${Offset}&${this._apiKey}`);
-        // const res = await this.getResorces('https://gateway.marvel.com:443/v1/public/characters/1011399?apikey=61018d53665eb61a121c94ca85c73714');
-        console.log(res)
         return res.data.results.map(this._transformCharacter)
         
     }
 
     getCharacters = async  (id) => {
         const res = await this.getResorces(`${this._apiBase}/characters/${id}?${this._apiKey}`);
-        // const res = await this.getResorces('https://gateway.marvel.com:443/v1/public/characters/1011399?apikey=61018d53665eb61a121c94ca85c73714');
-        console.log(res.data)
         return this._transformCharacter(res.data.results[0])
         
     }
 
     _transformCharacter = (char) => {
-        console.log(char)
         return {
             id: char.id,
             name: char.name,
