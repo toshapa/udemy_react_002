@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/udemy_react_002/static/css/main.5b6a3e2c.chunk.css",
+    "main.js": "/udemy_react_002/static/js/main.5a474ae6.chunk.js",
+    "main.js.map": "/udemy_react_002/static/js/main.5a474ae6.chunk.js.map",
+    "runtime-main.js": "/udemy_react_002/static/js/runtime-main.8290b54b.js",
+    "runtime-main.js.map": "/udemy_react_002/static/js/runtime-main.8290b54b.js.map",
+    "static/js/2.a38f4593.chunk.js": "/udemy_react_002/static/js/2.a38f4593.chunk.js",
+    "static/js/2.a38f4593.chunk.js.map": "/udemy_react_002/static/js/2.a38f4593.chunk.js.map",
+    "index.html": "/udemy_react_002/index.html",
+    "static/css/main.5b6a3e2c.chunk.css.map": "/udemy_react_002/static/css/main.5b6a3e2c.chunk.css.map",
+    "static/js/2.a38f4593.chunk.js.LICENSE.txt": "/udemy_react_002/static/js/2.a38f4593.chunk.js.LICENSE.txt",
+    "static/media/error.42292aa1.gif": "/udemy_react_002/static/media/error.42292aa1.gif",
+    "static/media/mjolnir.61f31e18.png": "/udemy_react_002/static/media/mjolnir.61f31e18.png",
+    "static/media/vision.067d4ae1.png": "/udemy_react_002/static/media/vision.067d4ae1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8290b54b.js",
+    "static/js/2.a38f4593.chunk.js",
+    "static/css/main.5b6a3e2c.chunk.css",
+    "static/js/main.5a474ae6.chunk.js"
+  ]
+}
