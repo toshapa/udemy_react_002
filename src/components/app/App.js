@@ -13,9 +13,7 @@ const App = () => {
     const [selectedChar, setChar] = useState(null)
     
     const onSelectedChar = (id) => {
-        setChar({
-            selectedChar: id
-        })
+        setChar(id)
     }
 
     
@@ -30,12 +28,11 @@ const App = () => {
         
                 <div className="char__content">
                     <ErrorBoundary>
-                        <CharList onSelectedChar = {onSelectedChar}/>
+                        <CharList onSelectedChar = {onSelectedChar} />
                     </ErrorBoundary>
                     
                     <ErrorBoundary>
                             <CharInfo charId = {selectedChar} />    
-                            
                     </ErrorBoundary>
                 </div>
 
