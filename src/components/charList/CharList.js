@@ -15,7 +15,7 @@ const CharList = (props) => {
     const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(1);
-    const [charEndead, setCharEndead] = useState(false);    
+    const [charEndead, setCharEndead] = useState(true);    
 
     // state = {
     //     charList: [],
@@ -64,9 +64,9 @@ const CharList = (props) => {
 
         setCharList(charList => [...charList, ...newCharList]);
         setLoading(false);
-        setNewItemLoading(true);
+        setNewItemLoading(false);
         setOffset(offset => offset + 9);
-        setCharEndead(charEndead => endead)
+        setCharEndead(endead)
     }
 
     
@@ -103,7 +103,7 @@ const CharList = (props) => {
     }
 
     const onCheckedItems = (e,b) => {
-        console.log(e,b)
+
         props.onSelectedChar(e)
         onFocusItem(b);
 
@@ -144,12 +144,10 @@ const CharList = (props) => {
         
     // const {charList, loading, error, newItemLoading, offset, charEndead} = this.state;
     
-    
     const items = renderItems(charList);
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
     const content = !(loading || error) ? items : null;
-
         return (
             <div className="char__list">
                     {errorMessage}
