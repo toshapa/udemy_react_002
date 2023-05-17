@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import Spinner  from "../spinner/Spinner.js";
 import ErrorMessage from '../error/error';
 
@@ -11,11 +11,11 @@ import React from 'react';
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(1);
-    const [charEndead, setCharEndead] = useState(true);    
+    const [charEndead, setCharEndead] = useState(true);
 
     // state = {
     //     charList: [],
@@ -26,12 +26,12 @@ const CharList = (props) => {
     //     charEndead: false,
     // }
 
-    const marvelService = new MarvelService();
+    const {loading, error, getAllCharacters} = useMarvelService();
 
 
 
     useEffect(() => {
-        onRequestNewChar();
+        onRequestNewChar(offset, true);
     }, []);
 
 
@@ -41,11 +41,13 @@ const CharList = (props) => {
     
 
 
-    const onRequestNewChar = (offset) => {
-        onCharListLoading()
-        marvelService.getAllCharacters(offset)
+    const onRequestNewChar = (offset, load) => {
+        load ? setNewItemLoading(true) : setNewItemLoading(false)
+        // onCharListLoading()
+        // setNewItemLoading(true)
+        getAllCharacters(offset)
             .then(onCharLoaded)
-            .catch(onError)
+            // .catch(onError)
     }
 
     const onCharLoaded = (newCharList) => {
@@ -63,7 +65,7 @@ const CharList = (props) => {
         // ))
 
         setCharList(charList => [...charList, ...newCharList]);
-        setLoading(false);
+        // setLoading(false);
         setNewItemLoading(false);
         setOffset(offset => offset + 9);
         setCharEndead(endead)
@@ -71,24 +73,24 @@ const CharList = (props) => {
 
     
 
-    const onCharListLoading = () => {
+    // const onCharListLoading = () => {
 
-        setNewItemLoading(true);
+    //     setNewItemLoading(true);
 
-        // setState({
-        //     newItemLoading: true
-        // })
-    }
+    //     // setState({
+    //     //     newItemLoading: true
+    //     // })
+    // }
 
-    const onError = () => {
-        // return this.setState({
-        //     loading: false, 
-        //     error: true
-        //     })
+    // const onError = () => {
+    //     // return this.setState({
+    //     //     loading: false, 
+    //     //     error: true
+    //     //     })
 
-        setError(true);
-        setLoading(loading => false)
-    }
+    //     setError(true);
+    //     setLoading(loading => false)
+    // }
 
     const activeRed = useRef([]);
 
@@ -146,13 +148,15 @@ const CharList = (props) => {
     
     const items = renderItems(charList);
     const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = !(loading || error) ? items : null;
+    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+    // const content = !(loading || error) ? items : null;
         return (
             <div className="char__list">
+                    {items}
                     {errorMessage}
                     {spinner}
-                    {content}
+                    {/* {content} */}
+                    
                 <button 
                     className="button button__main button__long"
                     disabled={newItemLoading}

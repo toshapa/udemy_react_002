@@ -1,4 +1,4 @@
-import { Component, useState, useEffect, useSyncExternalStore } from 'react';
+import { useState, useEffect } from 'react';
 
 import Spinner from '../spinner/Spinner'
 import ErrorMessage from '../error/error'
@@ -6,7 +6,7 @@ import ErrorMessage from '../error/error'
 import './randomChar.scss';
 import mjolnir from '../../resources/img/mjolnir.png';
 
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 
 const RandomChar = () => {
 
@@ -28,24 +28,24 @@ const RandomChar = () => {
     // }
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(false);
 
 
     
-    const marvelService = new MarvelService()
+    const {loading, error, getCharacters, clearError} = useMarvelService()
 
     const UpdateChar = () => {
+        clearError();
         const id = Math.floor(Math.floor(Math.random() * (1011400 - 1011000) + 1011000))
-        marvelService.getCharacters(id)
+        getCharacters(id)
             .then(onCharLoaded)
-            .catch(onError)
+            // .catch(onError)
     }
 
     const onCharLoaded = (char) => {
-        console.log(char)
         setChar(char);
-        setLoading(false);
+        // setLoading(false);
 
         // this.setState({ 
         //     char,
@@ -53,16 +53,16 @@ const RandomChar = () => {
         //     })
     }
 
-    const onError = () => {
+    // const onError = () => {
 
-        setLoading(false);
-        setError(true);
+    //     setLoading(false);
+    //     setError(true);
 
-        // return this.setState({
-        //     loading: false, 
-        //     error: true
-        //     })
-    }
+    //     // return this.setState({
+    //     //     loading: false, 
+    //     //     error: true
+    //     //     })
+    // }
 
         // const {char, loading, error} = this.state;
         const errorMessage = error ? <ErrorMessage/> : null
