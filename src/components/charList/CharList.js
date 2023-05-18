@@ -147,6 +147,7 @@ const CharList = (props) => {
     // const {charList, loading, error, newItemLoading, offset, charEndead} = this.state;
     
     const items = renderItems(charList);
+    console.log(items)
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading && !newItemLoading ? <Spinner/> : null;
     // const content = !(loading || error) ? items : null;
