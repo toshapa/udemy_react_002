@@ -42,7 +42,7 @@ const CharList = (props) => {
 
 
     const onRequestNewChar = (offset, load) => {
-        load ? setNewItemLoading(true) : setNewItemLoading(false)
+        load ? setNewItemLoading(false) : setNewItemLoading(true)
         // onCharListLoading()
         // setNewItemLoading(true)
         getAllCharacters(offset)

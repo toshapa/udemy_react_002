@@ -20,12 +20,13 @@ const ComicsList = () => {
     }, []);
     
     const onRequestNewListComcics = () => {
+        setOffset(offset => offset + 8)
         getComics(offset)
         .then(setNewComicsList)
     }
 
     const activeRed = useRef([]);
-    console.log(activeRed)
+
 
     const onFocusItem = (id) => {
         activeRed.current.forEach(items => {items.classList.remove('comics__item-img__selected')})
@@ -34,7 +35,8 @@ const ComicsList = () => {
     }
 
     const getNewComics = () => {
-        setOffset(offset = offset + 8)
+        onRequestNewListComcics()
+        console.log(offset)
         
     }
 
@@ -136,7 +138,7 @@ const ComicsList = () => {
                 </li> */}
             {/* </ul> */}
             <button className="button button__main button__long"
-                onClick={getNewComics}>
+                onClick={() => getNewComics()}>
                 <div className="inner">load more</div>
             </button>
         </div>

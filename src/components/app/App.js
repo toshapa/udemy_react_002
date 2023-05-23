@@ -1,57 +1,25 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AppHeader from "../appHeader/AppHeader";
-import RandomChar from "../randomChar/RandomChar";
-import CharList from "../charList/CharList";
-import CharInfo from "../charInfo/CharInfo";
-import ComicsList from '../comicsList/ComicsList';
-import AppBanner from '../appBanner/AppBanner'
+
+import { MainPages, ComicsPage } from '../../pages'
 
 
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-
-
-
-import decoration from '../../resources/img/vision.png';
-
-const App = () => {
-
-    const [selectedChar, setChar] = useState(null)
-    
-    const onSelectedChar = (id) => {
-        setChar(id)
-    }
-
-    
+const App = () => {    
 
     return (
-        <div className="app">
-            <AppHeader/>
-            <main>
-                {/* <ErrorBoundary>
-                    <RandomChar/>
-                </ErrorBoundary>
-        
-                <div className="char__content">
-                    <ErrorBoundary>
-                        <CharList onSelectedChar = {onSelectedChar} />
-                    </ErrorBoundary>
-                    
-                    <ErrorBoundary>
-                            <CharInfo charId = {selectedChar} />    
-                    </ErrorBoundary>
-                </div>
-                <img className="bg-decoration" src={decoration} alt="vision"/>
-                 */}
-
-                <div>
-                    <AppBanner />
-                    <ErrorBoundary>
-                        <ComicsList />
-                    </ErrorBoundary>
-                </div>
-            </main>
-        </div>
+        <Router>
+            <div className="app">
+                <AppHeader/>
+                {/* <MainPages /> */}
+                <main>
+                    <Routes>
+                        <Route path='/' element={<MainPages />}/>
+                        <Route path='/comics' element={<ComicsPage />} />
+                    </Routes>
+                </main>
+            </div>
+        </Router>
     )
 }
 
