@@ -31,7 +31,7 @@ const CharList = (props) => {
 
 
     useEffect(() => {
-        onRequestNewChar(offset, true);
+        return (() => onRequestNewChar(offset, true))
     }, []);
 
 
@@ -42,7 +42,7 @@ const CharList = (props) => {
 
 
     const onRequestNewChar = (offset, load) => {
-        load ? setNewItemLoading(false) : setNewItemLoading(true)
+        load ? setNewItemLoading(true) : setNewItemLoading(false)
         // onCharListLoading()
         // setNewItemLoading(true)
         getAllCharacters(offset)
@@ -105,7 +105,6 @@ const CharList = (props) => {
     }
 
     const onCheckedItems = (e,b) => {
-
         props.onSelectedChar(e)
         onFocusItem(b);
 
@@ -147,17 +146,18 @@ const CharList = (props) => {
     // const {charList, loading, error, newItemLoading, offset, charEndead} = this.state;
     
     const items = renderItems(charList);
-    console.log(items)
+
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading && !newItemLoading ? <Spinner/> : null;
     // const content = !(loading || error) ? items : null;
+    console.log( loading, !newItemLoading)
         return (
+            
             <div className="char__list">
                     {items}
                     {errorMessage}
                     {spinner}
                     {/* {content} */}
-                    
                 <button 
                     className="button button__main button__long"
                     disabled={newItemLoading}

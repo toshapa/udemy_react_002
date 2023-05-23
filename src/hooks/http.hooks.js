@@ -10,11 +10,10 @@ export const useHttp = () => {
         setLoading(true)
         try {
             const response = await fetch (url, {method, body, headers})
-
             if (!response.ok) {
                 throw new Error (`Could ${url}, status: ${response.status}`)
             }
-
+            setLoading(true)   
             const data = await response.json();
             setLoading(false);
             return data
