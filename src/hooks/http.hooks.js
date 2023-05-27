@@ -13,7 +13,6 @@ export const useHttp = () => {
             if (!response.ok) {
                 throw new Error (`Could ${url}, status: ${response.status}`)
             }
-            setLoading(true)   
             const data = await response.json();
             setLoading(false);
             return data

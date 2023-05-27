@@ -6,6 +6,7 @@ import Spinner from '../spinner/Spinner';
 
 import useMarvelService from '../../services/MarvelService';
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ComicsList = () => {
 
@@ -49,18 +50,18 @@ const ComicsList = () => {
             }
             return(
                 <li className="comics__item" 
-                    key={item.id}
+                    key={i}
                     // ref={(el) => activeRed.current[i] = el}
                     // onMouseEnter={() => onFocusItem(i)}
                     >
-                    <a href={item.url}>
+                    <Link to={`/comics/${item.id}`}>
                         <img src={item.img} alt={item.alt} className="comics__item-img" style={imgStyle}
                             ref={(el) => activeRed.current[i] = el}
                             onMouseEnter={() => onFocusItem(i)}
                         />
                         <div className="comics__item-name">{item.title.toUpperCase()}</div>
                         <div className="comics__item-price">{item.price}</div>
-                    </a>
+                    </Link>
                 </li>
             )
         })
