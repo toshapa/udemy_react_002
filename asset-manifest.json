@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.338ef774.chunk.css",
-    "main.js": "/static/js/main.f3ca5d50.chunk.js",
-    "main.js.map": "/static/js/main.f3ca5d50.chunk.js.map",
+    "main.js": "/static/js/main.c4ab127e.chunk.js",
+    "main.js.map": "/static/js/main.c4ab127e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.31c483c7.js",
     "runtime-main.js.map": "/static/js/runtime-main.31c483c7.js.map",
-    "static/js/2.e794a03b.chunk.js": "/static/js/2.e794a03b.chunk.js",
-    "static/js/2.e794a03b.chunk.js.map": "/static/js/2.e794a03b.chunk.js.map",
+    "static/js/2.dcb205a6.chunk.js": "/static/js/2.dcb205a6.chunk.js",
+    "static/js/2.dcb205a6.chunk.js.map": "/static/js/2.dcb205a6.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.338ef774.chunk.css.map": "/static/css/main.338ef774.chunk.css.map",
-    "static/js/2.e794a03b.chunk.js.LICENSE.txt": "/static/js/2.e794a03b.chunk.js.LICENSE.txt",
+    "static/js/2.dcb205a6.chunk.js.LICENSE.txt": "/static/js/2.dcb205a6.chunk.js.LICENSE.txt",
     "static/media/Avengers.4065c8f9.png": "/static/media/Avengers.4065c8f9.png",
     "static/media/Avengers_logo.9eaf2193.png": "/static/media/Avengers_logo.9eaf2193.png",
     "static/media/UW.422636b4.png": "/static/media/UW.422636b4.png",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.31c483c7.js",
-    "static/js/2.e794a03b.chunk.js",
+    "static/js/2.dcb205a6.chunk.js",
     "static/css/main.338ef774.chunk.css",
-    "static/js/main.f3ca5d50.chunk.js"
+    "static/js/main.c4ab127e.chunk.js"
   ]
 }
