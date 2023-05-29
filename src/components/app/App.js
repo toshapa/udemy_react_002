@@ -11,7 +11,7 @@ const App = () => {
         <Router>
             <div className="app">
                 <AppHeader/>
-                {/* <MainPages /> */}
+                <MainPages />
                 <main>
                     <Routes>
                         <Route path='/' element={<MainPages />}/>   
