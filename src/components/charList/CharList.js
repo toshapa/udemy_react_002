@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 import useMarvelService from '../../services/MarvelService';
@@ -5,7 +6,7 @@ import Spinner  from "../spinner/Spinner.js";
 import ErrorMessage from '../error/error';
 
 import './charList.scss';
-import React from 'react';
+
 
 
 const CharList = (props) => {
@@ -14,7 +15,7 @@ const CharList = (props) => {
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
-    const [offset, setOffset] = useState(1);
+    const [offset, setOffset] = useState(9);
     const [charEndead, setCharEndead] = useState(true);
 
     // state = {
@@ -31,7 +32,7 @@ const CharList = (props) => {
 
 
     useEffect(() => {
-        return (() => onRequestNewChar(offset, true))
+        return onRequestNewChar(offset, true)
     }, []);
 
 
@@ -45,12 +46,14 @@ const CharList = (props) => {
         load ? setNewItemLoading(true) : setNewItemLoading(false)
         // onCharListLoading()
         // setNewItemLoading(true)
+        console.log(`newChar: ${offset}`)
         getAllCharacters(offset)
             .then(onCharLoaded)
             // .catch(onError)
     }
 
     const onCharLoaded = (newCharList) => {
+        console.log(`CharLoad${newCharList}`)
         let endead = false
         if (newCharList.length < 9) {
             endead = true
@@ -150,7 +153,6 @@ const CharList = (props) => {
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading && !newItemLoading ? <Spinner/> : null;
     // const content = !(loading || error) ? items : null;
-    console.log( loading, !newItemLoading)
         return (
             
             <div className="char__list">

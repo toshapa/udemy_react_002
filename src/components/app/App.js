@@ -11,10 +11,9 @@ const App = () => {
         <Router>
             <div className="app">
                 <AppHeader/>
-                <MainPages />
                 <main>
                     <Routes>
-                        <Route path='/' element={<MainPages />}/>   
+                        <Route index path='/' element={<MainPages />}/>   
                         <Route path='/comics' element={<ComicsPage />} />
                         <Route path="/comics/:comicId" element={<SingleComic/>} />
                         <Route path= '*' element = {<Page404 />}/>
@@ -24,7 +23,5 @@ const App = () => {
         </Router>
     )
 }
-
-// "homepage" : "https://toshapa.github.io/udemy_react_002/",  --openssl-legacy-provider start
 
 export default App;

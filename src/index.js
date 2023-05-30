@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactDOM, createRoot } from 'react-dom/client'; 
+import { ReactDOM, createRoot } from 'react-dom/client';
 import App from './components/app/App';
 
 import './style/style.scss';
@@ -7,8 +7,8 @@ import './style/style.scss';
 
 createRoot(document.getElementById('root'))
   .render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
 );
 
