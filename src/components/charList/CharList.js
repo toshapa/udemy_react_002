@@ -29,10 +29,10 @@ const CharList = (props) => {
 
     const {loading, error, getAllCharacters} = useMarvelService();
 
-
+    
 
     useEffect(() => {
-        return onRequestNewChar(offset, true)
+        return onRequestNewChar(offset, false)
     }, []);
 
 
@@ -46,14 +46,13 @@ const CharList = (props) => {
         load ? setNewItemLoading(true) : setNewItemLoading(false)
         // onCharListLoading()
         // setNewItemLoading(true)
-        console.log(`newChar: ${offset}`)
+        // console.log(`newChar: ${offset}`)
         getAllCharacters(offset)
             .then(onCharLoaded)
             // .catch(onError)
     }
 
     const onCharLoaded = (newCharList) => {
-        console.log(`CharLoad${newCharList}`)
         let endead = false
         if (newCharList.length < 9) {
             endead = true
@@ -73,8 +72,6 @@ const CharList = (props) => {
         setOffset(offset => offset + 9);
         setCharEndead(endead)
     }
-
-    
 
     // const onCharListLoading = () => {
 
@@ -110,7 +107,6 @@ const CharList = (props) => {
     const onCheckedItems = (e,b) => {
         props.onSelectedChar(e)
         onFocusItem(b);
-
     }
 
     const renderItems = (arr) => {
@@ -137,6 +133,7 @@ const CharList = (props) => {
                 </li>
             )
         })
+        console.log('render')
         return (
             <ul className="char__grid">
                 {character}
