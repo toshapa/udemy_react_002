@@ -42,6 +42,10 @@ const useMarvelService = () => {
         return _comicTransform(res.data.results[0])
     }
 
+    const getChararcterForForm = async () => {
+        
+    }
+
     const _comicsForm = (comics) => {
         return {
             url: comics.urls[0].url,

@@ -12,6 +12,7 @@ const ComicsPage = lazy(() => import ("../../pages/ComicsPage"));
 const Page404 = lazy(() => import ("../../pages/Page404"));
 const SingleComic = lazy(() => import ("../../pages/singleComic/SingleComic"))
 
+
 const App = () => {    
 
     return (
