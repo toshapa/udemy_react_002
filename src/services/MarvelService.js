@@ -36,14 +36,14 @@ const useMarvelService = () => {
         return res.data.results.map(_comicsForm)
     }
 
-    const getComic = async (id) => {
-        const res = await request(`${_apiBase}/comics/${id}?${_apiKey}`)
-        console.log(res)
-        return _comicTransform(res.data.results[0])
+    const getCharacterComic = async (id) => {
+        const res = await request (`${_apiBase}/characters/${id}/comics?${_apiKey}`)
+        return _comicCharacterTransform(res.data.results)
     }
 
-    const getChararcterForForm = async () => {
-        
+    const getComic = async (id) => {
+        const res = await request(`${_apiBase}/comics/${'331'}?${_apiKey}`)
+        return _comicTransform(res.data.results[0])
     }
 
     const _comicsForm = (comics) => {
@@ -55,6 +55,17 @@ const useMarvelService = () => {
             price: comics.prices[0].price,
             alt: comics.series.name
         }
+    }
+
+    const _comicCharacterTransform = (comic) => {
+        let arr = []            
+        arr = comic.map(({ title, urls}) => {
+                return {
+                    title: title,
+                    urls: urls[0].url
+                }
+            })
+        return arr
     }
 
     const _comicTransform = (comic) => {
@@ -80,7 +91,7 @@ const useMarvelService = () => {
             comics: char.comics.items
         }
     }
-    return {getAllCharacters, getCharacters, loading, error, clearError, getComics, getComic }
+    return {getAllCharacters, getCharacters, loading, error, clearError, getComics, getComic, getCharacterComic }
 }
 
 export default useMarvelService

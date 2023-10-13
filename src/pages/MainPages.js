@@ -29,7 +29,7 @@ const MainPages = () => {
                 </ErrorBoundary>
                 <div>
                     <ErrorBoundary>
-                        <CharInfo charId ={selectedChar}/>
+                        <CharInfo charId = {selectedChar}/>
                     </ErrorBoundary>
 
                     <ErrorBoundary>

@@ -37,8 +37,6 @@ const ComicsList = () => {
 
     const getNewComics = () => {
         onRequestNewListComcics()
-        console.log(offset)
-        
     }
 
     const renderComcicsList = (comics) => {

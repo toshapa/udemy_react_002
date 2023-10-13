@@ -1,12 +1,13 @@
 {
   "name": "marvel",
-  "version": "0.2.0",
-  "homepage": "/udemy_react_002/#",
+  "version": "0.3.3",
+  "homepage": "http:///udemy_react_002/#",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "browserlist": "^1.0.1",
     "git": "^0.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -18,7 +19,7 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -41,9 +42,9 @@
     ]
   },
   "devDependencies": {
-    "formik": "^2.4.2",
+    "formik": "^2.4.5",
     "gh-pages": "^5.0.0",
-    "sass": "^1.38.0"
+    "sass": "^1.68.0"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
@@ -55,5 +56,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/toshapa/udemy_react_002/issues"
-  }
+  },
+  "keywords": [
+    "PIZDEC"
+  ]
 }

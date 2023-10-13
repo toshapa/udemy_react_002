@@ -133,7 +133,6 @@ const CharList = (props) => {
                 </li>
             )
         })
-        console.log('render')
         return (
             <ul className="char__grid">
                 {character}
