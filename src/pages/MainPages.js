@@ -27,16 +27,17 @@ const MainPages = () => {
                 <ErrorBoundary>
                     <CharList onSelectedChar = {onSelectedChar}/>
                 </ErrorBoundary>
-                <div>
+                <div 
+                    style={{
+                        position: 'sticky',
+                        top: 0
+                    }}
+                >
                     <ErrorBoundary>
                         <CharInfo charId = {selectedChar}/>
-                    </ErrorBoundary>
-
-                    <ErrorBoundary>
                         <SearchCharForm />
                     </ErrorBoundary>
                 </div>
-                
             </div>
             <img className="bg-decoration" src={decoration} alt="vision"/>
         </>

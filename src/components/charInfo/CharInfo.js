@@ -10,6 +10,8 @@ import Skeleton from '../skeleton/Skeleton';
 import './charInfo.scss';
 // import thor from '../../resources/img/thor.jpeg';
 
+
+
 const CharInfo = (props) => {
     const [char, setChar] = useState(null);
     const [comicsList, setComicsList] = useState([]);
@@ -28,23 +30,18 @@ const CharInfo = (props) => {
     // componentDidMount() {
 
     //     this.UpdateChar()
-    // }
-
     const onRequestNewListComics = (charId) => {
         getCharacterComic(charId.toString())
         .then(setComicsList)
     }
-    
-    console.log(comicsList)
-
     useEffect(() => {
         UpdateChar()
         if (props.charId === null) {
             return
         }
         onRequestNewListComics(props.charId)
-        // eslint-disable-next-line
     }, [props.charId])
+
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // componentDidUpdate(prevProps) {
@@ -95,7 +92,6 @@ const CharInfo = (props) => {
 
         
         // const {char, error, loading} = this.state
-        
         const skeleton = char || error || loading ? null : <Skeleton/>
         const errorMessage = error ? <ErrorMessage/> : null
         const spinner = loading ? <Spinner/> : null
@@ -108,14 +104,20 @@ const CharInfo = (props) => {
                 {content}
             </div>
         )
-    }
+
+    //     const 
+    // if () {
+
+    // }
+}
 
 const View = ({char, comic}) => {
-    const {description, name, thumbnail, wiki, homePage, comics} = char
+    const {description, name, thumbnail, wiki, homePage} = char
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {'objectFit' : 'contain'};
     }
+
     return (
         <>
             <div className="char__basics">
@@ -137,23 +139,14 @@ const View = ({char, comic}) => {
             </div>
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">
-                {      
+                {
                     comic.map(({title, urls}, i) => {
-
-                        console.log(title)
                         return (
                             <li className="char__comics-item" key={i}>
                                 <a href={urls}>{title}</a>
                             </li>
                         )
                     })            
-                    // comics.map((item, i)=> {
-                    //     // eslint-disable-next-lines
-                    //     if (i > 9) return
-                    //     return (<li className="char__comics-item" key={i}>
-                    //         <a href='#'>{item.name}</a>
-                    //     </li>)
-                    // })
                 }
             </ul>
         </>
