@@ -7,8 +7,10 @@
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
         z-index: 5;
         background-color: #fff;
-        // max-height: 70vh;
-        // position: sticky;
+        top: 0;
+        max-height: 70vh;
+        position: sticky;
+        overflow: scroll;
         top: 0;
         &-name {
             font-weight: bold;
@@ -47,9 +49,7 @@
         line-height: 24px;
         margin-top: 10px;
         &-list {
-            top: 0;
-            position: sticky;
-            overflow: scroll;
+            
             margin-top: 20px;
         }
         &-item {
@@ -82,5 +82,4 @@
         line-height: 24px;
         text-align: center;
     }
-
 }

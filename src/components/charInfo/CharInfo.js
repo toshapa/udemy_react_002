@@ -104,11 +104,6 @@ const CharInfo = (props) => {
                 {content}
             </div>
         )
-
-    //     const 
-    // if () {
-
-    // }
 }
 
 const View = ({char, comic}) => {

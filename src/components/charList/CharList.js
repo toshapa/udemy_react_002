@@ -10,7 +10,6 @@ import './charList.scss';
 
 
 const CharList = (props) => {
-
     const [charList, setCharList] = useState([]);
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState(false);

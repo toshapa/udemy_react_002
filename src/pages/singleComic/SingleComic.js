@@ -26,13 +26,9 @@ const SingleComic = () => {
     }
 
     const onComicLoaded = (comic) => {
-        // console.log(comic)
         return setComic(comic)
     }
 
-
-    // console.log(getComic())
-    // const {} = getComic;
  
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
