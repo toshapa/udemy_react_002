@@ -113,6 +113,8 @@ const View = ({char, comic}) => {
         imgStyle = {'objectFit' : 'contain'};
     }
 
+
+
     return (
         <>
             <div className="char__basics">
@@ -133,17 +135,18 @@ const View = ({char, comic}) => {
                 {description}
             </div>
             <div className="char__comics">Comics:</div>
-            <ul className="char__comics-list">
-                {
-                    comic.map(({title, urls}, i) => {
-                        return (
-                            <li className="char__comics-item" key={i}>
-                                <a href={urls}>{title}</a>
-                            </li>
-                        )
-                    })            
-                }
-            </ul>
+            <div className='char__comics__wrap' style={comic.length === 0 ? null : {height: "30vh", overflow: 'scroll'}}>
+                <ul className="char__comics__wrap-list">
+                    {
+                        comic.map(({title, urls}, i) => {
+                            return (
+                                <li className="char__comics__wrap-item" key={i}>
+                                    <a href={urls}>{title}</a>
+                                </li>
+                        )})
+                    }
+                </ul>   
+            </div>
         </>
     )
 }

@@ -3,15 +3,16 @@
 .char {
     box-sizing: border-box;
     &__info {
+        display: block;
         padding: 25px;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
         z-index: 5;
         background-color: #fff;
         top: 0;
         max-height: 70vh;
-        position: sticky;
-        overflow: scroll;
-        top: 0;
+        // position: sticky;
+        // overflow: scroll;
+        // top: 0;
         &-name {
             font-weight: bold;
             font-size: 22px;
@@ -48,31 +49,41 @@
         font-size: 18px;
         line-height: 24px;
         margin-top: 10px;
-        &-list {
-            
-            margin-top: 20px;
-        }
-        &-item {
-            display: flex;
-            position: relative;
-            width: 100%;
-            padding: 0px 10px;
-            line-height: 25px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            margin-top: 10px;
-            top: 0;
-            transition: top 0.3s linear,
-                        background-color linear, background-color 0.1s linear;
-            -webkit-transition: top 0.3s linear, background-color 0.1s linear;
-            -moz-transition: top 0.3s linear, background-color 0.1s linear;
-            -o-transition: top 0.3s linear, background-color 0.1s linear;
-            // transition-delay: 3s;
-            // transition-timing-function: ease;
-            &:hover {
-                top: -5px;
-            }
-            &:active {
-                background-color: $main-color;
+        &__wrap {
+            display: block;
+            // height: 30vh;
+            // overflow: scroll;
+            // &-list {
+            //     // scrollbar-width: th;
+            //     ::-webkit-scrollbar-thumb {
+            //     width: 50px;
+            //         }
+            //     // margin-top: 20px;
+            // }
+            &-item {
+                display: flex;
+                position: relative;
+                width: 100%;
+                padding: 0px 10px;
+                line-height: 25px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                margin-top: 10px;
+                transition: top 0.3s linear,
+                            background-color linear, background-color 0.1s linear;
+                -webkit-transition: top 0.3s linear, background-color 0.1s linear;
+                -moz-transition: top 0.3s linear, background-color 0.1s linear;
+                -o-transition: top 0.3s linear, background-color 0.1s linear;
+                transition-delay: 3s;
+                transition-timing-function: ease;
+                &:hover {
+                    top: -5px;
+                }
+                &:active {
+                    background-color: $main-color;
+                }
+                &::-webkit-scrollbar-thumb {
+                    width: 25px;
+                }
             }
         }
     }
