@@ -5,6 +5,7 @@ import './SingleCharacter.scss'
 
 
 const singleCharacter = ({data}) => {
+    console.log('SingleCharacter')
     const {thumbnail} = data
 return (
     <div className='single-comic'>
@@ -13,8 +14,6 @@ return (
 )
 
 }
-
-
 
 
 export default singleCharacter
