@@ -11,8 +11,8 @@ import SinglePage from "../../pages/SinglePage";
 const MainPages = lazy(() => import ("../../pages/MainPages"));
 const ComicsPage = lazy(() => import ("../../pages/ComicsPage"));
 const Page404 = lazy(() => import ("../../pages/Page404"));
-const SingleComic = lazy(() => import ("../../pages/singleComic/SingleComic"))
-const SingleCharacter = lazy(() => ("../../pages/SingleCharacter/SingleCharacter"))
+const SingleComic = lazy(() => import ("../../pages/singleComic/SingleComic"));
+const SingleCharacter = lazy(() => import ("../../pages/SingleCharacter/SingleCharacter"));
 
 
 
@@ -27,9 +27,9 @@ const App = () => {
                         <Routes>
                             <Route index path='/' element = {<MainPages />} />
                             <Route path='/comics' element = {<ComicsPage />} />
-                            <Route path="/comics/:id" element = {<SinglePage component={SingleComic} dataType = 'comic'/>} />
-                            <Route path="/characters/:Id" element = {<SinglePage component={SingleCharacter} dataType = 'character'/>}/>
-                            {/* <Route path= '*' element = {<Page404 />}/> */}
+                            <Route path="/comics/:id" element = {<SinglePage Component = {SingleComic} dataType = 'comic'/>} />
+                            <Route path="/characters/:id" element = {<SinglePage Component = {SingleCharacter} dataType = 'character'/>} />
+                            <Route path= '*' element = {<Page404 />}/>
                         </Routes>
                     </Suspense>
                     {/* <Routes>

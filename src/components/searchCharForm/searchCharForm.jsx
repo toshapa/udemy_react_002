@@ -38,7 +38,7 @@ const SearchCharForm = () => {
     const results = !char ? null : char.length > 0 ? 
         <div className="char__search-wrapper">
             <div className="char__search-success">There is, visit to {char[0].name} page</div>
-            <Link to = {`/charcters/${char[0].id}`} className='button button__secondary'>
+            <Link to = {`/characters/${char[0].id}`} className='button button__secondary'>
                 <div className="inner">To Page</div>
             </Link>
         </div> : <div className="char__search-error">The character was not found. Check the name and try again</div>

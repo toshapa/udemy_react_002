@@ -8,13 +8,11 @@ import ErrorMessage from "../components/error/error";
 import AppBanner from "../components/appBanner/AppBanner";
 
 
-const SinglePage = ({component, dataType}) => {
-
-    console.log(dataType)
+const SinglePage = ({Component, dataType}) => {
 
     const {id} = useParams()
     const [data, setData] = useState()
-    const {error, loading, getComic, getCharacters, clearError} = useMarvelService()
+    const {error, loading, getComic, getCharacters, clearError, getCharacterByName} = useMarvelService()
 
     useEffect(() => {
         UpdateData()
@@ -22,19 +20,30 @@ const SinglePage = ({component, dataType}) => {
 
     const UpdateData = () => {
         clearError();
-
         switch(dataType) {
             case 'comic' : getComic(id).then(onDataLoaded)
-            break
-            case 'character' : getCharacters(id).then(onDataLoaded) 
+            break;
+            case 'character' : getCharacters(id).then(onDataLoaded)
         }
     }
 
     const onDataLoaded = (data) => {
         setData(data)
     }
+
+    const errorMessage = error ? <ErrorMessage /> : null
+    const spinner = loading ? <Spinner /> : null
+    const content = !(loading || error || !data) ? <Component data={data} /> : null
+    return (
+        <>
+            <AppBanner />
+            {errorMessage}
+            {spinner}
+            {content}
+        </>
+    )
+        
     
-    return
 }
 
 export default SinglePage;
