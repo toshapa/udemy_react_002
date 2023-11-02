@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet as NewHelmet} from "react-helmet";
 
 
 import RandomChar from "../components/randomChar/RandomChar";
@@ -18,8 +19,18 @@ const MainPages = () => {
         setChar(id)
     }
 
+    const NewTitle = () => {
+        return (
+            <NewHelmet>
+                <title>Marvel information portal</title>
+                <meta name="description" content="Marvel information portal" />
+            </NewHelmet>
+        )
+    }
+
     return (
         <>  
+            <NewTitle />
             <ErrorBoundary>
                 <RandomChar />  
             </ErrorBoundary>

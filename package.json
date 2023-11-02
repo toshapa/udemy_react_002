@@ -44,6 +44,7 @@
   "devDependencies": {
     "formik": "^2.4.5",
     "gh-pages": "^5.0.0",
+    "react-helmet": "^6.1.0",
     "sass": "^1.68.0"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",

@@ -1,5 +1,6 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Helmet as NewHelmet} from "react-helmet";
 
 import AppHeader from "../appHeader/AppHeader";
 
@@ -19,6 +20,7 @@ const SingleCharacter = lazy(() => import ("../../pages/SingleCharacter/SingleCh
 const App = () => {    
 
     return (
+        
         <Router>
             <div className="app">
                 <AppHeader/>

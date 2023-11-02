@@ -8,6 +8,7 @@ import ErrorMessage from "../error/error";
 import './searchformchar.scss';
 
 
+
 const SearchCharForm = () => {
 
     const [char, setChar] = useState(null)
@@ -34,6 +35,8 @@ const SearchCharForm = () => {
         // UpdateChar(value)
         return error;
     }
+
+
     const errorMessage = <div className="char__search-critical-error"><ErrorMessage /></div>
     const results = !char ? null : char.length > 0 ? 
         <div className="char__search-wrapper">
