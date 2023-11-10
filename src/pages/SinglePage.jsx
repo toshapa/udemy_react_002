@@ -34,7 +34,7 @@ const SinglePage = ({Component, dataType}) => {
         setData(data)
     }
     const NewTitle = (data) => {
-        console.log(data)
+        // clearError();
         return (
             <NewHelmet>
                 <title>{data?.data?.title || data?.data?.name}</title>

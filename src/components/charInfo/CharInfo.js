@@ -25,7 +25,7 @@ const CharInfo = (props) => {
     // }
 
     // eslint-disable-next-line
-    const {loading, error, getCharacters, clearError, getCharacterComic} = useMarvelService();
+    const {loading, error, getCharacters, clearError, getCharacterComic, process, setProcess } = useMarvelService();
 
     // componentDidMount() {
 
@@ -60,6 +60,9 @@ const CharInfo = (props) => {
         clearError()
         getCharacters(charId)
             .then(onCharLoaded)
+            .then( () => {
+                setProcess('confirmed')
+            })
             // .catch(onError)
     }
 
@@ -92,16 +95,35 @@ const CharInfo = (props) => {
 
         
         // const {char, error, loading} = this.state
-        const skeleton = char || error || loading ? null : <Skeleton/>
-        const errorMessage = error ? <ErrorMessage/> : null
-        const spinner = loading ? <Spinner/> : null
-        const content = !(loading || error || !char) ? <View char = {char} comic = {comicsList}/>  : null
+        // const skeleton = char || error || loading ? null : <Skeleton/>
+        // const errorMessage = error ? <ErrorMessage/> : null
+        // const spinner = loading ? <Spinner/> : null
+        // const content = !(loading || error || !char) ? <View char = {char} comic = {comicsList}/>  : null
+
+        const setContent = (char, process) => {
+            switch (process) {
+                case 'waiting' : 
+                    return <Skeleton />
+                case 'loading' : 
+                    return <Spinner/>
+                case 'confirmed' : 
+                    return <View char = {char} comic = {comicsList}/>
+                case 'error' : 
+                    return <ErrorMessage />
+                default : 
+                    throw new Error ('Unexpected process state')
+            }
+
+        }
+
         return (
             <div className="char__info">
-                {skeleton}
+                {/* {skeleton}
                 {errorMessage}
                 {spinner}
-                {content}
+                {content} */}
+
+                {setContent(char, process)}
             </div>
         )
 }

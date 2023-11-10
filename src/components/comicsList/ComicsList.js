@@ -1,6 +1,4 @@
 import './comicsList.scss';
-// import uw from '../../resources/img/UW.png';
-// import xMen from '../../resources/img/x-men.png';
 
 import Spinner from '../spinner/Spinner';
 
@@ -70,11 +68,10 @@ const ComicsList = () => {
         )
     }
 
-    
-
     const comics = renderComcicsList(comicsList);
     const spinner = loading && loadSpinner ? <Spinner /> : null;
     return (
+        
         <div className="comics__list">
             {/* <ul className="comics__grid"> */}
                 {comics}
