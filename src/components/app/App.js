@@ -1,6 +1,6 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { Helmet as NewHelmet} from "react-helmet";
+// import { Helmet as NewHelmet} from "react-helmet";
 
 import AppHeader from "../appHeader/AppHeader";
 
@@ -29,8 +29,8 @@ const App = () => {
                         <Routes>
                             <Route index path='/' element = {<MainPages />} />
                             <Route path='/comics' element = {<ComicsPage />} />
-                            <Route path="/comics/:id" element = {<SinglePage Component = {SingleComic} dataType = 'comic'/>} />
-                            <Route path="/characters/:id" element = {<SinglePage Component = {SingleCharacter} dataType = 'character'/>} />
+                            <Route path="/comics/:id" element = {<SinglePage Component = {SingleComic} dataType = 'comic' />} />
+                            <Route path="/characters/:id" element = {<SinglePage Component = {SingleCharacter} dataType = 'character' />} />
                             <Route path= '*' element = {<Page404 />}/>
                         </Routes>
                     </Suspense>

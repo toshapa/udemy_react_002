@@ -1,12 +1,12 @@
-import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
 
-import useMarvelService from '../../services/MarvelService';
-import ErrorMessage from '../../components/error/error';
-import Spinner from '../../components/spinner/Spinner';
+// import useMarvelService from '../../services/MarvelService';
+// import ErrorMessage from '../../components/error/error';
+// import Spinner from '../../components/spinner/Spinner';
 
 
-import AppBanner from '../../components/appBanner/AppBanner';
+// import AppBanner from '../../components/appBanner/AppBanner';
 import './singleComic.scss';
 // import xMen from '../../resources/img/x-men.png';
 

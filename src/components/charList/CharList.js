@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 import useMarvelService from '../../services/MarvelService';
 import Spinner  from "../spinner/Spinner.js";
+// import Skeleton from '../skeleton/Skeleton.js';
 import ErrorMessage from '../error/error';
+// import setContent from '../../utils/setContent';
 
 import './charList.scss';
 
+
+const setContent = (process, Component, newItemLoading) => {
+    console.log(process)
+    switch (process) {
+        case 'waiting' : 
+            return <Spinner />
+        case 'loading' : 
+            return newItemLoading ? <Component /> : <Spinner />
+        case 'confirmed' :
+            return <Component /> 
+        case 'error' : 
+            return <ErrorMessage />
+        default :
+            throw new Error ('Shoto ne to')
+    }
+}
 
 
 const CharList = (props) => {
@@ -26,8 +44,8 @@ const CharList = (props) => {
     //     charEndead: false,
     // }
 
-    const {loading, error, getAllCharacters} = useMarvelService();
-
+    const {loading, error, getAllCharacters, process, setProcess} = useMarvelService();
+    console.log(process)
     
 
     useEffect(() => {
@@ -39,18 +57,6 @@ const CharList = (props) => {
     //     this.onRequestNewChar()
     // }
     
-
-
-    const onRequestNewChar = (offset, load) => {
-        load ? setNewItemLoading(true) : setNewItemLoading(false)
-        // onCharListLoading()
-        // setNewItemLoading(true)
-        // console.log(`newChar: ${offset}`)
-        getAllCharacters(offset)
-            .then(onCharLoaded)
-            // .catch(onError)
-    }
-
     const onCharLoaded = (newCharList) => {
         let endead = false
         if (newCharList.length < 9) {
@@ -70,6 +76,17 @@ const CharList = (props) => {
         setNewItemLoading(false);
         setOffset(offset => offset + 9);
         setCharEndead(endead)
+    }
+
+    const onRequestNewChar = (offset, load) => {
+        load ? setNewItemLoading(false) : setNewItemLoading(true)
+        // onCharListLoading()
+        // setNewItemLoading(true)
+        // console.log(`newChar: ${offset}`)
+        getAllCharacters(offset)
+            .then(onCharLoaded)
+            .then(() => setProcess('confirmed'))
+            // .catch(onError)
     }
 
     // const onCharListLoading = () => {
@@ -139,22 +156,26 @@ const CharList = (props) => {
         )
     }
 
+    // const elements = useMemo(() => {
+    //     return setContent(process, renderItems(charList))
+    // }, [process])
 
-        
+    
     // const {charList, loading, error, newItemLoading, offset, charEndead} = this.state;
     
-    const items = renderItems(charList);
+    // const items = renderItems(charList);
 
-    const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+
+    // const errorMessage = error ? <ErrorMessage/> : null;
+    // const spinner = loading && !newItemLoading ? <Spinner/> : null;
     // const content = !(loading || error) ? items : null;
         return (
-            
             <div className="char__list">
-                    {items}
-                    {errorMessage}
+                    {/* {items} */}
+                    {/* {errorMessage}
                     {spinner}
-                    {/* {content} */}
+                    {content} */}
+                    {setContent(process, () => renderItems(charList), newItemLoading)}
                 <button 
                     className="button button__main button__long"
                     disabled={newItemLoading}

@@ -1,27 +1,62 @@
 import './comicsList.scss';
 
 import Spinner from '../spinner/Spinner';
+import ErrorMessage from '../error/error';
 
 import useMarvelService from '../../services/MarvelService';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const setContent = (process, Component, newItemLoading) => {
+    switch (process) {
+        case 'waiting' : 
+            return <Spinner />
+        case 'loading' : 
+            return newItemLoading ? <Spinner /> : <Spinner />  
+        case 'confirmed' :
+            return <Component /> 
+        case 'error' : 
+            return <ErrorMessage />
+        default :
+            throw new Error ('Shoto ne to')
+    }
+}
+
 const ComicsList = () => {
 
-    const [offset, setOffset] = useState(8);
     const [comicsList, setNewComicsList] = useState([]);
-    const [loadSpinner, setLoadSpinner] = useState(true)
+    const [newItemLoading, setNewItemLoading] = useState(false)
+    const [comicsEnded, setComicsEnded] = useState(false);
+    const [offset, setOffset] = useState(8);
 
-    const {getComics, loading} = useMarvelService();
+    // const [loadSpinner, setLoadSpinner] = useState(true)
+
+    const {getComics, loading, process, setProcess} = useMarvelService();
 
     useEffect(() => {
-        onRequestNewListComcics()
+        onRequestNewListComics(offset, true)
+        // eslint-disable-next-line
     }, []);
-    
-    const onRequestNewListComcics = () => {
-        setOffset(offset => offset + 8)
+
+    const onComicsLoaded = (newComics) => {
+        let ended = false;
+        if (newComics.length < 8) {
+            ended = true;
+        }
+        
+        setNewComicsList([...newComics])
+        setNewItemLoading(false)
+        setOffset(offset + 8)
+        setComicsEnded(ended)
+    }
+
+    const onRequestNewListComics = (offset, initial) => {
+        initial ? setNewItemLoading(false) : setNewItemLoading(true)
         getComics(offset)
-        .then(setNewComicsList)
+            .then(onComicsLoaded)
+            .then(() => setProcess('confirmed'))
+        // .then(setNewComicsList)
+        
     }
 
     const activeRed = useRef([]);
@@ -33,12 +68,8 @@ const ComicsList = () => {
         activeRed.current[id].focus();
     }
 
-    const getNewComics = () => {
-        onRequestNewListComcics()
-    }
 
     const renderComcicsList = (comics) => {
-        // console.log(comics)
         const listOfComcics = comics.map((item, i) => {
             let imgStyle = {'objectFit' : 'cover'};
             if (item.img === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
@@ -68,14 +99,15 @@ const ComicsList = () => {
         )
     }
 
-    const comics = renderComcicsList(comicsList);
-    const spinner = loading && loadSpinner ? <Spinner /> : null;
+    // const comics = renderComcicsList(comicsList);
+    // const spinner = loading && loadSpinner ? <Spinner /> : null;
     return (
         
         <div className="comics__list">
             {/* <ul className="comics__grid"> */}
-                {comics}
-                {spinner}
+                {/* {comics}
+                {spinner} */}
+                {setContent(process, () => renderComcicsList(comicsList), newItemLoading)}
                 {/* <li className="comics__item">
                     <a href="#">
                         <img src={uw} alt="ultimate war" className="comics__item-img"/>
@@ -133,8 +165,11 @@ const ComicsList = () => {
                     </a>
                 </li> */}
             {/* </ul> */}
-            <button className="button button__main button__long"
-                onClick={() => getNewComics()}>
+            <button 
+                disabled = {newItemLoading}
+                style={{'display' : comicsEnded ? 'none' : 'block'}}
+                className="button button__main button__long"
+                onClick={() => onRequestNewListComics(offset)}>
                 <div className="inner">load more</div>
             </button>
         </div>

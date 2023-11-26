@@ -1,9 +1,10 @@
-import { useState, useEffect}  from 'react';
+import { useState, useEffect }  from 'react';
 import useMarvelService from '../../services/MarvelService';
+import setContent from '../../utils/setContent';
 
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../error/error';
-import Skeleton from '../skeleton/Skeleton';
+// import Spinner from '../spinner/Spinner';
+// import ErrorMessage from '../error/error';
+// import Skeleton from '../skeleton/Skeleton';
 
 
 
@@ -100,21 +101,20 @@ const CharInfo = (props) => {
         // const spinner = loading ? <Spinner/> : null
         // const content = !(loading || error || !char) ? <View char = {char} comic = {comicsList}/>  : null
 
-        const setContent = (char, process) => {
-            switch (process) {
-                case 'waiting' : 
-                    return <Skeleton />
-                case 'loading' : 
-                    return <Spinner/>
-                case 'confirmed' : 
-                    return <View char = {char} comic = {comicsList}/>
-                case 'error' : 
-                    return <ErrorMessage />
-                default : 
-                    throw new Error ('Unexpected process state')
-            }
-
-        }
+        // const setContent = (char, process) => {
+        //     switch (process) {
+        //         case 'waiting' : 
+        //             return <Skeleton />
+        //         case 'loading' : 
+        //             return <Spinner/>
+        //         case 'confirmed' : 
+        //             return <View char = {char} comic = {comicsList}/>
+        //         case 'error' : 
+        //             return <ErrorMessage />
+        //         default : 
+        //             throw new Error ('Unexpected process state')
+        //     }
+        // }
 
         return (
             <div className="char__info">
@@ -123,13 +123,13 @@ const CharInfo = (props) => {
                 {spinner}
                 {content} */}
 
-                {setContent(char, process)}
+                {setContent(process, View, char, comicsList)}
             </div>
         )
 }
 
-const View = ({char, comic}) => {
-    const {description, name, thumbnail, wiki, homePage} = char
+const View = ({data, comic}) => {
+    const {description, name, thumbnail, wiki, homePage} = data
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {'objectFit' : 'contain'};
